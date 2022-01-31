@@ -63,7 +63,7 @@ async def vplay(c: Client, m: Message):
         [
             [
                 InlineKeyboardButton(text="• Mᴇɴᴜ", callback_data="cbmenu"),
-                InlineKeyboardButton(text="• Group", url=f"https://t.me/lisasupportchat"),
+                InlineKeyboardButton(text="• support", url=f"https://t.me/botdestekk"),
             ]
         ]
     )
@@ -126,7 +126,7 @@ async def vplay(c: Client, m: Message):
 
     if replied:
         if replied.video or replied.document:
-            loser = await replied.reply("📥 **downloading video...**")
+            loser = await replied.reply("📥 **video iniyor...**")
             dl = await replied.download()
             link = replied.link
             if len(m.command) < 2:
@@ -304,8 +304,8 @@ async def vstream(c: Client, m: Message):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton(text="• Mᴇɴᴜ", callback_data="cbmenu"),
-                InlineKeyboardButton(text="• Cʟᴏsᴇ", callback_data="cls"),
+                InlineKeyboardButton(text="• geri", callback_data="cbmenu"),
+                InlineKeyboardButton(text="• geri", callback_data="cls"),
             ]
         ]
     )
@@ -347,7 +347,7 @@ async def vstream(c: Client, m: Message):
             try:
                 await user.join_chat(m.chat.username)
             except Exception as e:
-                await m.reply_text(f"❌ **userbot failed to join**\n\n**reason**: `{e}`")
+                await m.reply_text(f"❌ **userbot katılamadı**\n\n**reason**: `{e}`")
                 return
         else:
             try:
