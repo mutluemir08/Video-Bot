@@ -57,7 +57,7 @@ async def cbstart(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("kılavuz"))
 async def cbguides(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""❓ **Basic Guide for using this bot:**
+        f"""❓ **Başlangıç aşağıdaki adımları uygulayın:**
 
 1.) **başlangıç beni gruba ekle.**
 2.) **bana yetki verin aonim yetkisi vermeyin.**
@@ -164,7 +164,7 @@ async def cbmenu(_, query: CallbackQuery):
     chat_id = query.message.chat.id
     if chat_id in QUEUE:
           await query.edit_message_text(
-              f"⚙️ **settings of** {query.message.chat.title}\n\n⏸ : durdur şarkı\n▶️ : durdur şarkı\n🔇 : durdur asistan\n🔊 : devam asistan\n⏹ : Durdur şarkı
+              f"⚙️ **ayarlar kapat** {query.message.chat.title}\n\n⏸ : durdur\n▶️ : devam et\n🔇 : sesize al\n🔊 : sesi ac asistan\n⏹ : Bitir
               reply_markup=InlineKeyboardMarkup(
                   [[
                       InlineKeyboardButton("⏹", callback_data="bitir"),
