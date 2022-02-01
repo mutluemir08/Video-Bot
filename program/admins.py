@@ -64,7 +64,7 @@ async def skip(client, m: Message):
         else:
             await m.reply_photo(
                 photo=f"{IMG_3}",
-                caption=f"⏭ **Skipped to the next track.**\n\n🏷 **İsim:** [{op[0]}]({op[1]})\n💭 **Chat:** `{chat_id}`\n💡 **Durum:** `Oynuyor`\n🎧 **İsteyen:** {m.from_user.mention()}",
+                caption=f"⏭ **sonraki parçaya atlandı.**\n\n🏷 **İsim:** [{op[0]}]({op[1]})\n💭 **Chat:** `{chat_id}`\n💡 **Durum:** `Oynuyor`\n🎧 **İsteyen:** {m.from_user.mention()}",
                 reply_markup=keyboard,
             )
     else:
@@ -113,7 +113,7 @@ async def pause(client, m: Message):
         try:
             await call_py.pause_stream(chat_id)
             await m.reply(
-                "⏸ **Track paused.**\n\n• **Durdurduğunuz şarkıya Devam etmek için**\n» /devam komutunu kullanın ."
+                "⏸ **Durduruldu**\n\n• **Durdurduğunuz şarkıya Devam etmek için**\n» /devam komutunu kullanın ."
             )
         except Exception as e:
             await m.reply(f"🚫 **error:**\n\n`{e}`")
