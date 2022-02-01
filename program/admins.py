@@ -100,7 +100,7 @@ async def stop(client, m: Message):
         try:
             await call_py.leave_group_call(chat_id)
             clear_queue(chat_id)
-            await m.reply("✅ The userbot has disconnected from the video chat.")
+            await m.reply("✅ Asistan sesli sohbetten ayrıldı .")
         except Exception as e:
             await m.reply(f"🚫 **hattar:**\n\n`{e}`")
     else:
@@ -126,7 +126,7 @@ async def pause(client, m: Message):
 
 
 @Client.on_message(
-    command(["resume", f"resume@{BOT_USERNAME}", "vresume"]) & other_filters
+    command(["durdur", f"resume@{BOT_USERNAME}", "vdurdur"]) & other_filters
 )
 @authorized_users_only
 async def resume(client, m: Message):
@@ -144,7 +144,7 @@ async def resume(client, m: Message):
 
 
 @Client.on_message(
-    command(["mute", f"mute@{BOT_USERNAME}", "vmute"]) & other_filters
+    command(["kapat", f"mute@{BOT_USERNAME}", "vmute"]) & other_filters
 )
 @authorized_users_only
 async def mute(client, m: Message):
@@ -153,7 +153,7 @@ async def mute(client, m: Message):
         try:
             await call_py.mute_stream(chat_id)
             await m.reply(
-                "🔇 **Userbot muted.**\n\n• **Asistanın sesi kapatıldı.**\n\n• **Asistanın sesini açmak için**\n» /ac komutunu kullanın."
+                "🔇 **Asistanın sesi kapatıldı.**\n\n• **Asistanın sesini açmak için**\n» /ac komutunu kullanın."
             )
         except Exception as e:
             await m.reply(f"🚫 **error:**\n\n`{e}`")
