@@ -29,12 +29,13 @@ bcl = InlineKeyboardMarkup(
 async def update_admin(client, message):
     global admins
     new_admins = []
-    new_ads = await client.get_chat_members(message.chat.id, filter="administrators")
+    new_ads = await client.get_chat_members(message.chat.id, filter="yönetici listesi")
     for u in new_ads:
         new_admins.append(u.user.id)
     admins[message.chat.id] = new_admins
     await message.reply_text(
-        "✅ Bot **reloaded correctly !**\n✅ **Admin list** has **updated !**"
+        "✅ Bot **sorunsuz bir şekilde yenilendi !**\n✅ **Yönetici listesi** sorunsuz **Yenilendi !
+       **"
     )
 
 
@@ -61,13 +62,13 @@ async def skip(client, m: Message):
         if op == 0:
             await m.reply("❌ "Şu anda bir şey oynatılmıyor"))
         elif op == 1:
-            await m.reply("✅  __Sırada__ **şarkı yok.**\n\n**• userbot sesten düşüyor**")
+            await m.reply("✅  __Sırada__ **şarkı yok.**\n\n**• userbot sesli sohbetten Ayrılıyor**")
         elif op == 2:
             await m.reply("🗑️ **sıraları temizleme**\n\n**• userbot sesli sohbetten ayrılıyor**")
         else:
             await m.reply_photo(
                 photo=f"{IMG_3}",
-                caption=f"⏭ **Skipped to the next track.**\n\n🏷 **Name:** [{op[0]}]({op[1]})\n💭 **Chat:** `{chat_id}`\n💡 **Status:** `Playing`\n🎧 **Request by:** {m.from_user.mention()}",
+                caption=f"⏭ **Skipped to the next track.**\n\n🏷 **İsim:** [{op[0]}]({op[1]})\n💭 **Chat:** `{chat_id}`\n💡 **Durum:** `Oynuyor`\n🎧 **İsteyen:** {m.from_user.mention()}",
                 reply_markup=keyboard,
             )
     else:
