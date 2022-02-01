@@ -24,7 +24,7 @@ bcl = InlineKeyboardMarkup(
 )
 
 
-@Client.on_message(command(["yenile", f"reload@{BOT_USERNAME}"]) & other_filters)
+@Client.on_message(command(["yenile", f"yenile@{BOT_USERNAME}"]) & other_filters)
 @authorized_users_only
 async def update_admin(client, message):
     global admins
@@ -86,7 +86,7 @@ async def skip(client, m: Message):
 
 
 @Client.on_message(
-    command(["bitir", f"stop@{BOT_USERNAME}", "son", f"end@{BOT_USERNAME}", "vson"])
+    command(["bitir", f"bitir@{BOT_USERNAME}", "vbitir", f"son@{BOT_USERNAME}", "vson"])
     & other_filters
 )
 @authorized_users_only
@@ -104,7 +104,7 @@ async def stop(client, m: Message):
 
 
 @Client.on_message(
-    command(["durdur", f"pause@{BOT_USERNAME}", "vdurdur"]) & other_filters
+    command(["durdur", f"durdur@{BOT_USERNAME}", "vdurdur"]) & other_filters
 )
 @authorized_users_only
 async def pause(client, m: Message):
@@ -122,7 +122,7 @@ async def pause(client, m: Message):
 
 
 @Client.on_message(
-    command(["durdur", f"resume@{BOT_USERNAME}", "vdurdur"]) & other_filters
+    command(["devam", f"devam@{BOT_USERNAME}", "vdevam"]) & other_filters
 )
 @authorized_users_only
 async def resume(client, m: Message):
@@ -140,7 +140,7 @@ async def resume(client, m: Message):
 
 
 @Client.on_message(
-    command(["kapat", f"mute@{BOT_USERNAME}", "vmute"]) & other_filters
+    command(["kapat", f"kapat@{BOT_USERNAME}", "vkapat"]) & other_filters
 )
 @authorized_users_only
 async def mute(client, m: Message):
@@ -158,7 +158,7 @@ async def mute(client, m: Message):
 
 
 @Client.on_message(
-    command(["ac", f"unmute@{BOT_USERNAME}", "vac"]) & other_filters
+    command(["ac", f"ac@{BOT_USERNAME}", "vac"]) & other_filters
 )
 @authorized_users_only
 async def unmute(client, m: Message):
@@ -276,7 +276,7 @@ async def cbunmute(_, query: CallbackQuery):
 
 
 @Client.on_message(
-    command(["ayarla", f"volume@{BOT_USERNAME}", "vol"]) & other_filters
+    command(["ayarla", f"ayarla@{BOT_USERNAME}", "aya"]) & other_filters
 )
 @authorized_users_only
 async def change_volume(client, m: Message):
