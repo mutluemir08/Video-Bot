@@ -6,10 +6,10 @@ from pyrogram.types import Message
 from driver.filters import command, other_filters
 from driver.decorators import sudo_users_only, errors
 
-downloads = os.path.realpath("program/downloads")
+downloads = os.path.realpath("program/inme")
 raw = os.path.realpath(".")
 
-@Client.on_message(command(["rmd", "clear"]) & ~filters.edited)
+@Client.on_message(command(["rmd", "temizleme"]) & ~filters.edited)
 @errors
 @sudo_users_only
 async def clear_downloads(_, message: Message):
@@ -17,12 +17,12 @@ async def clear_downloads(_, message: Message):
     if ls_dir:
         for file in os.listdir(downloads):
             os.remove(os.path.join(downloads, file))
-        await message.reply_text("✅ **deleted all downloaded files**")
+        await message.reply_text("✅ **indirilen tüm dosyalar sildi**" 
     else:
-        await message.reply_text("❌ **no files downloaded**")
+        await message.reply_text("❌ **indirilen dosya yok**") 
 
         
-@Client.on_message(command(["rmw", "clean"]) & ~filters.edited)
+@Client.on_message(command(["rmw", "temizleme"]) & ~filters.edited)
 @errors
 @sudo_users_only
 async def clear_raw(_, message: Message):
@@ -31,12 +31,12 @@ async def clear_raw(_, message: Message):
         for file in os.listdir(raw):
             if file.endswith('.raw'):
                 os.remove(os.path.join(raw, file))
-        await message.reply_text("✅ **deleted all raw files**")
+        await message.reply_text("✅ **tüm  dosyalar silindi**")
     else:
-        await message.reply_text("❌ **no raw files found**")
+        await message.reply_text("❌ **dosya bulunamadı**")
 
 
-@Client.on_message(command(["cleanup"]) & ~filters.edited)
+@Client.on_message(command(["temizleme"]) & ~filters.edited)
 @errors
 @sudo_users_only
 async def cleanup(_, message: Message):
@@ -45,6 +45,6 @@ async def cleanup(_, message: Message):
     if ls_dir:
         for dta in os.listdir(pth):
             os.system("rm -rf *.raw *.jpg")
-        await message.reply_text("✅ **cleaned**")
+        await message.reply_text("✅ **temizleme**")
     else:
-        await message.reply_text("✅ **already cleaned**")
+        await message.reply_text("✅ **Zaten temizledi**")
