@@ -54,7 +54,7 @@ async def ytdl(link):
         return 0, stderr.decode()
 
 
-@Client.on_message(command(["vplay", f"vplay@{BOT_USERNAME}"]) & other_filters)
+@Client.on_message(command(["voynat", f"voynat@{BOT_USERNAME}"]) & other_filters)
 async def vplay(c: Client, m: Message):
     await m.delete()
     replied = m.reply_to_message
@@ -297,7 +297,7 @@ async def vplay(c: Client, m: Message):
                             await m.reply_text(f"🚫 error: `{ep}`")
 
 
-@Client.on_message(command(["vstream", f"vstream@{BOT_USERNAME}"]) & other_filters)
+@Client.on_message(command(["canlı", f"canlı@{BOT_USERNAME}"]) & other_filters)
 async def vstream(c: Client, m: Message):
     await m.delete()
     chat_id = m.chat.id
