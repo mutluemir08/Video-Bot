@@ -35,9 +35,7 @@ async def update_admin(client, message):
     admins[message.chat.id] = new_admins
     await message.reply_text(
         "✅ Bot **sorunsuz bir şekilde yenilendi !**\n✅ **Yönetici listesi** sorunsuz **Yenilendi  !**")
-    )
-
-
+   )
 @Client.on_message(command(["atla", f"skip@{BOT_USERNAME}", "vatla"]) & other_filters)
 @authorized_users_only
 async def skip(client, m: Message):
