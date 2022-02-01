@@ -23,7 +23,7 @@ async def ytsearch(_, message: Message):
         [
             [
                 InlineKeyboardButton(
-                    "🗑 Close", callback_data="cls",
+                    "🗑 mkapat", callback_data="cls",
                 )
             ]
         ]
@@ -31,7 +31,7 @@ async def ytsearch(_, message: Message):
 
     try:
         if len(message.command) < 2:
-            await message.reply_text("/search **needs an argument !**")
+            await message.reply_text("/ara **komutu argümana ihtiyac duyar !**")
             return
         query = message.text.split(None, 1)[1]
         m = await message.reply_text("🔎 **Searching...**")
@@ -39,10 +39,10 @@ async def ytsearch(_, message: Message):
         i = 0
         text = ""
         while i < 5:
-            text += f"🏷 **Name:** __{results[i]['title']}__\n"
-            text += f"⏱ **Duration:** `{results[i]['duration']}`\n"
-            text += f"👀 **Views:** `{results[i]['views']}`\n"
-            text += f"📣 **Channel:** {results[i]['channel']}\n"
+            text += f"🏷 **isim:** __{results[i]['başlık']}__\n"
+            text += f"⏱ **süre:** `{results[i]['süre']}`\n"
+            text += f"👀 **görüntüleme:** `{results[i]['görüntüleme']}`\n"
+            text += f"📣 **Kanal:** {results[i]['channel']}\n"
             text += f"🔗: https://www.youtube.com{results[i]['url_suffix']}\n\n"
             i += 1
         await m.edit(text, reply_markup=keyboard, disable_web_page_preview=True)
