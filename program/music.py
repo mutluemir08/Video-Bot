@@ -39,7 +39,7 @@ async def ytdl(format: str, link: str):
     return 0, stderr
 
 
-@Client.on_message(command(["oynat", f"play@{BOT_USERNAME}"]) & other_filters)
+@Client.on_message(command(["oynat", f"oynat@{BOT_USERNAME}"]) & other_filters)
 async def play(c: Client, m: Message):
     await m.delete()
     replied = m.reply_to_message
@@ -61,7 +61,7 @@ async def play(c: Client, m: Message):
     a = await c.get_chat_member(chat_id, aing.id)
     if a.status != "yönetici":
         await m.reply_text(
-            f"💡 Beni kullanabilmeniz için yönetici olmam gerekiyor 
+            f"💡 Beni kullanabilmeniz için yönetici olmam gerekiyor")
         )
         return
     if not a.can_manage_voice_chats:
@@ -107,7 +107,7 @@ async def play(c: Client, m: Message):
                 pass
             except Exception as e:
                 return await m.reply_text(
-                    f"❌ **Asistan katılamadı**\n\n**sebep**: `{e}`"
+                    f"❌ **asistan katılamadı**\n\n**sebep**: `{e}`"
                 )
     if replied:
         if replied.audio or replied.voice:
@@ -134,7 +134,7 @@ async def play(c: Client, m: Message):
                 )
             else:
              try:
-                await suhu.edit("🔄 **Joining vc...**")
+                await suhu.edit("🔄 **katılma vc...**")
                 await call_py.join_group_call(
                     chat_id,
                     AudioPiped(
@@ -163,7 +163,7 @@ async def play(c: Client, m: Message):
                 query = m.text.split(None, 1)[1]
                 search = ytsearch(query)
                 if search == 0:
-                    await suhu.edit("❌ **Sonuç bulundu.**")
+                    await suhu.edit("❌ Sonuç bulundu.**")
                 else:
                     songname = search[0]
                     url = search[1]
@@ -176,7 +176,7 @@ async def play(c: Client, m: Message):
                     else:
                         if chat_id in QUEUE:
                             pos = add_to_queue(
-                                chat_id, songname, ytlink, url, "Audio", 0
+                                chat_id, songname, ytlink, url, "ses"", 0
                             )
                             await suhu.delete()
                             requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
@@ -200,12 +200,12 @@ async def play(c: Client, m: Message):
                                 requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
                                 await m.reply_photo(
                                     photo=thumbnail,
-                                    caption=f"🏷 **isim:** [{songname}]({url})\n**⏱ süre:** `{duration}`\n💡 **Status:** `oynatılıyor`\n🎧 **isteyen:** {requester}\n📹 **şarkı türü:** `Music`",
+                                    caption=f"🏷 **isim:** [{songname}]({url})\n**⏱ süre:** `{duration}`\n💡 **Durum:** `oynatılıyor`\n🎧 **isteyen:** {requester}\n📹 **şarkı türü:** `Music`",
                                     reply_markup=keyboard,
                                 )
                             except Exception as ep:
                                 await suhu.delete()
-                                await m.reply_text(f"🚫 error: `{ep}`")
+                                await m.reply_text(f"🚫 hatta: `{ep}`")
 
     else:
         if len(m.command) < 2:
