@@ -222,7 +222,7 @@ async def cbstop(_, query: CallbackQuery):
         return await query.answer("Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm.")
     a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
     if not a.can_manage_voice_chats:
-        return await query.answer("💡 ("Sadece adminler !", show_alert=True)
+        return await query.answer("💡 Sadece adminler !", show_alert=True)
     chat_id = query.message.chat.id
     if chat_id in QUEUE:
         try:
