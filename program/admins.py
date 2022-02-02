@@ -285,7 +285,7 @@ async def change_volume(client, m: Message):
     if chat_id in QUEUE:
         try:
             await call_py.change_volume_call(chat_id, volume=int(range))
-            await m.reply"✅ ses ayarlandı**"){range}`%"
+            await m.reply("✅ ses ayarlandı**"){range}`%"
                 
             )
         except Exception as e:
