@@ -16,24 +16,24 @@ async def inline(client: Client, query: InlineQuery):
         await client.answer_inline_query(
             query.id,
             results=answers,
-            switch_pm_text="type a youtube video name...",
+            switch_pm_text="bir video adı yazın...",
             switch_pm_parameter="help",
             cache_time=0,
         )
     else:
         search = VideosSearch(search_query, limit=50)
 
-        for result in search.result()["result"]:
+        for result in search.result()["sonuç"]:
             answers.append(
                 InlineQueryResultArticle(
-                    title=result["title"],
+                    title=result["başlık"],
                     description="{}, {} views.".format(
-                        result["duration"], result["viewCount"]["short"]
+                        result["süre"], result["viewCount"]["short"]
                     ),
                     input_message_content=InputTextMessageContent(
                         "🔗 https://www.youtube.com/watch?v={}".format(result["id"])
                     ),
-                    thumb_url=result["thumbnails"][0]["url"],
+                    thumb_url=result["minikresim"][0]["url"],
                 )
             )
 
@@ -43,6 +43,6 @@ async def inline(client: Client, query: InlineQuery):
             await query.answer(
                 results=answers,
                 cache_time=0,
-                switch_pm_text="error: search timed out",
+                switch_pm_text="hatta: zaman aşımına uğradı",
                 switch_pm_parameter="",
             )
