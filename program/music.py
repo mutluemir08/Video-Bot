@@ -60,10 +60,8 @@ async def play(c: Client, m: Message):
         return await m.reply_text(f"error:\n\n{e}")
     a = await c.get_chat_member(chat_id, aing.id)
     if a.status != "yönetici":
-        await m.reply_text(
+        return await m.reply_text(
             f"💡 Beni kullanabilmeniz için yönetici olmam gerekiyor")
-        )
-        return
     if not a.can_manage_voice_chats:
         await m.reply_text(
             "gerekli izin eksik:" + "\n\n» ❌ __Görüntülü sohbeti yönet__" 
