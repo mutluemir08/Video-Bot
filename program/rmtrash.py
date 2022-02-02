@@ -17,11 +17,12 @@ async def clear_downloads(_, message: Message):
     if ls_dir:
         for file in os.listdir(downloads):
             os.remove(os.path.join(downloads, file))
-        await message.reply_text("✅ **indirilen tüm dosyalar sildi**" 
+        await message.reply_text("✅ **indirilen tüm dosyalar sildi**")
     else:
-        await message.reply_text("❌ **indirilen dosya yok**") 
+        return await message.reply_text("❌ **indirilen dosya yok**") 
 
-        
+
+
 @Client.on_message(command(["tmz", "temizleme"]) & ~filters.edited)
 @errors
 @sudo_users_only
