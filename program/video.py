@@ -330,6 +330,7 @@ async def vstream(c: Client, m: Message):
         return
     if not a.can_invite_users:
         await m.reply_text("Gerekli izin eksik:" + "\n\n» ❌ __Kullanıcıları ekleme__"
+        )
         return
     try:
         ubot = (await user.get_me()).id
