@@ -1,11 +1,4 @@
-from cache.admins import admins
-from driver.jennie import call_py
 from pyrogram import Client, filters
-from driver.decorators import authorized_users_only
-from driver.filters import command, other_filters
-from driver.queues import QUEUE, clear_queue
-from driver.utils import skip_current_song, skip_item
-from config import BOT_USERNAME, GROUP_SUPPORT, IMG_3, UPDATES_CHANNEL
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -13,15 +6,17 @@ from pyrogram.types import (
     Message,
 )
 
+from config import BOT_USERNAME, IMG_3
+from driver.decorators import authorized_users_only
+from driver.filters import command, other_filters
+from driver.jennie import call_py
+from driver.queues import QUEUE, clear_queue
+from driver.utils import skip_current_song, skip_item
 
-bttn = InlineKeyboardMarkup(
-    [[InlineKeyboardButton("🔙 Geri", callback_data="cbmenu")]]
-)
+bttn = InlineKeyboardMarkup([[InlineKeyboardButton("🔙 Geri", callback_data="cbmenu")]])
 
 
-bcl = InlineKeyboardMarkup(
-    [[InlineKeyboardButton("🗑 Mkapat", callback_data="cls")]]
-)
+bcl = InlineKeyboardMarkup([[InlineKeyboardButton("🗑 Mkapat", callback_data="cls")]])
 
 
 @Client.on_message(command(["yenile", f"yenile@{BOT_USERNAME}"]) & other_filters)
@@ -34,7 +29,10 @@ async def update_admin(client, message):
         new_admins.append(u.user.id)
     admins[message.chat.id] = new_admins
     await message.reply_text(
-        "✅ Bot **sorunsuz bir şekilde yenilendi !**\n✅ **Yönetici listesi** sorunsuz **Yenilendi  !**")
+        "✅ Bot **sorunsuz bir şekilde yenilendi !**\n✅ **Yönetici listesi** sorunsuz **Yenilendi  !**"
+    )
+
+
 @Client.on_message(command(["atla", f"atla@{BOT_USERNAME}", "vatla"]) & other_filters)
 @authorized_users_only
 async def skip(client, m: Message):
@@ -42,12 +40,8 @@ async def skip(client, m: Message):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton(
-                    text="• Mᴇɴᴜ", callback_data="cbmenu"
-                ),
-                InlineKeyboardButton(
-                    text="• Geri", callback_data="cls"
-                ),
+                InlineKeyboardButton(text="• Mᴇɴᴜ", callback_data="cbmenu"),
+                InlineKeyboardButton(text="• Geri", callback_data="cls"),
             ]
         ]
     )
@@ -58,9 +52,13 @@ async def skip(client, m: Message):
         if op == 0:
             await m.reply("❌ Şu anda bir şey oynatılmıyor")
         elif op == 1:
-            await m.reply("✅  __Sırada__ **şarkı yok.**\n\n**• userbot sesli sohbetten Ayrılıyor**")
+            await m.reply(
+                "✅  __Sırada__ **şarkı yok.**\n\n**• userbot sesli sohbetten Ayrılıyor**"
+            )
         elif op == 2:
-            await m.reply("🗑️ **sıraları temizleme**\n\n**• userbot sesli sohbetten ayrılıyor**")
+            await m.reply(
+                "🗑️ **sıraları temizleme**\n\n**• userbot sesli sohbetten ayrılıyor**"
+            )
         else:
             await m.reply_photo(
                 photo=f"{IMG_3}",
@@ -157,9 +155,7 @@ async def mute(client, m: Message):
         await m.reply("❌ **Zaten şarkı çalınmıyor**")
 
 
-@Client.on_message(
-    command(["ac", f"ac@{BOT_USERNAME}", "vac"]) & other_filters
-)
+@Client.on_message(command(["ac", f"ac@{BOT_USERNAME}", "vac"]) & other_filters)
 @authorized_users_only
 async def unmute(client, m: Message):
     chat_id = m.chat.id
@@ -173,13 +169,14 @@ async def unmute(client, m: Message):
             await m.reply(f"🚫 **error:**\n\n`{e}`")
     else:
         await m.reply("❌ **Zaten bir şey oynatılmıyor**")
-        
 
 
 @Client.on_callback_query(filters.regex("cbpause"))
 async def cbpause(_, query: CallbackQuery):
     if query.message.sender_chat:
-        return await query.answer("Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm.")
+        return await query.answer(
+            "Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm."
+        )
     a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
     if not a.can_manage_voice_chats:
         return await query.answer("💡 Sadece adminler !", show_alert=True)
@@ -187,9 +184,7 @@ async def cbpause(_, query: CallbackQuery):
     if chat_id in QUEUE:
         try:
             await call_py.pause_stream(chat_id)
-            await query.edit_message_text(
-                "⏸ Akış duraklatıldı", reply_markup=bttn
-            )
+            await query.edit_message_text("⏸ Akış duraklatıldı", reply_markup=bttn)
         except Exception as e:
             await query.edit_message_text(f"🚫 **error:**\n\n`{e}`", reply_markup=bcl)
     else:
@@ -199,7 +194,9 @@ async def cbpause(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbresume"))
 async def cbresume(_, query: CallbackQuery):
     if query.message.sender_chat:
-        return await query.answer("Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm.")
+        return await query.answer(
+            "Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm."
+        )
     a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
     if not a.can_manage_voice_chats:
         return await query.answer("💡 Sadece adminler !", show_alert=True)
@@ -207,9 +204,7 @@ async def cbresume(_, query: CallbackQuery):
     if chat_id in QUEUE:
         try:
             await call_py.resume_stream(chat_id)
-            await query.edit_message_text(
-                "▶️ Akış devam etti", reply_markup=bttn
-            )
+            await query.edit_message_text("▶️ Akış devam etti", reply_markup=bttn)
         except Exception as e:
             await query.edit_message_text(f"🚫 **error:**\n\n`{e}`", reply_markup=bcl)
     else:
@@ -219,7 +214,9 @@ async def cbresume(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbstop"))
 async def cbstop(_, query: CallbackQuery):
     if query.message.sender_chat:
-        return await query.answer("Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm.")
+        return await query.answer(
+            "Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm."
+        )
     a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
     if not a.can_manage_voice_chats:
         return await query.answer("💡 Sadece adminler !", show_alert=True)
@@ -228,7 +225,7 @@ async def cbstop(_, query: CallbackQuery):
         try:
             await call_py.leave_group_call(chat_id)
             clear_queue(chat_id)
-            await query.edit_message_text("✅ **akış sona erdi**",reply_markup=bcl)
+            await query.edit_message_text("✅ **akış sona erdi**", reply_markup=bcl)
         except Exception as e:
             await query.edit_message_text(f"🚫 **error:**\n\n`{e}`", reply_markup=bcl)
     else:
@@ -238,7 +235,9 @@ async def cbstop(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbmute"))
 async def cbmute(_, query: CallbackQuery):
     if query.message.sender_chat:
-        return await query.answer("Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm.")
+        return await query.answer(
+            "Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm."
+        )
     a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
     if not a.can_manage_voice_chats:
         return await query.answer("💡 Sadece adminler !", show_alert=True)
@@ -258,7 +257,9 @@ async def cbmute(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbunmute"))
 async def cbunmute(_, query: CallbackQuery):
     if query.message.sender_chat:
-        return await query.answer("Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm.")
+        return await query.answer(
+            "Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm."
+        )
     a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
     if not a.can_manage_voice_chats:
         return await query.answer("💡 Sadece adminler !", show_alert=True)
@@ -275,9 +276,7 @@ async def cbunmute(_, query: CallbackQuery):
         await query.answer("❌ Aktif yayın bulunamadı", show_alert=True)
 
 
-@Client.on_message(
-    command(["ayarla", f"ayarla@{BOT_USERNAME}", "aya"]) & other_filters
-)
+@Client.on_message(command(["ayarla", f"ayarla@{BOT_USERNAME}", "aya"]) & other_filters)
 @authorized_users_only
 async def change_volume(client, m: Message):
     range = m.command[1]

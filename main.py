@@ -1,6 +1,9 @@
 import asyncio
+
 from pytgcalls import idle
-from driver.jennie import call_py, bot
+
+from driver.jennie import bot, call_py
+
 
 async def start_bot():
     print("[INFO]: STARTING BOT CLIENT")
@@ -10,6 +13,7 @@ async def start_bot():
     await idle()
     print("[INFO]: STOPPING BOT & USERBOT")
     await bot.stop()
+
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(start_bot())

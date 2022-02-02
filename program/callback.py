@@ -1,7 +1,6 @@
-
-from driver.queues import QUEUE
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
+
 from config import (
     ASSISTANT_NAME,
     BOT_NAME,
@@ -10,6 +9,7 @@ from config import (
     OWNER_NAME,
     UPDATES_CHANNEL,
 )
+from driver.queues import QUEUE
 
 
 @Client.on_callback_query(filters.regex("cbstart"))
@@ -40,11 +40,7 @@ async def cbstart(_, query: CallbackQuery):
                         "📣 Kanal destek", url=f"https://t.m/{UPDATES_CHANNEL}"
                     ),
                 ],
-                [
-                    InlineKeyboardButton(
-                        "🌐 Sohbet grubu", url="https://t.me/gycyolcu"
-                    )
-                ],
+                [InlineKeyboardButton("🌐 Sohbet grubu", url="https://t.me/gycyolcu")],
             ]
         ),
         disable_web_page_preview=True,
@@ -85,11 +81,9 @@ async def cbcmds(_, query: CallbackQuery):
                 [
                     InlineKeyboardButton("👷🏻 Admin komut", callback_data="cbadmin"),
                     InlineKeyboardButton("🧙🏻 geliştirci", callback_data="cbsudo"),
-                ],[
-                    InlineKeyboardButton("📚 basit komut", callback_data="cbbasic")
-                ],[
-                    InlineKeyboardButton("🔙 geri dön", callback_data="cbstart")
                 ],
+                [InlineKeyboardButton("📚 basit komut", callback_data="cbbasic")],
+                [InlineKeyboardButton("🔙 geri dön", callback_data="cbstart")],
             ]
         ),
     )
@@ -132,6 +126,7 @@ async def cbadmin(_, query: CallbackQuery):
         ),
     )
 
+
 @Client.on_callback_query(filters.regex("cbsudo"))
 async def cbsudo(_, query: CallbackQuery):
     await query.edit_message_text(
@@ -147,26 +142,31 @@ async def cbsudo(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbmenu"))
 async def cbmenu(_, query: CallbackQuery):
     if query.message.sender_chat:
-        return await query.answer("Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm .")
+        return await query.answer(
+            "Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm ."
+        )
     a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
     if not a.can_manage_voice_chats:
         return await query.answer("💡 Sadece adminler !", show_alert=True)
     chat_id = query.message.chat.id
     if chat_id in QUEUE:
-          await query.edit_message_text(
-              f"⚙️ **ayarlar kapat** {query.message.chat.title}\n\n⏸ : durdur\n▶️ : devam et\n🔇 : sesize al\n🔊 : sesi ac asistan\n⏹ : Bitir", reply_markup=InlineKeyboardMarkup(
-                  [[
-                      InlineKeyboardButton("⏹", callback_data="bitir"),
-                      InlineKeyboardButton("⏸", callback_data="durdur"),
-                      InlineKeyboardButton("▶️", callback_data="devam"),
-                  ],[
-                      InlineKeyboardButton("🔇", callback_data="kapat"),
-                      InlineKeyboardButton("🔊", callback_data="ac"),
-                  ],[
-                      InlineKeyboardButton("🗑 mkapat", callback_data="mkpt")],
-                  ]
-             ),
-         )
+        await query.edit_message_text(
+            f"⚙️ **ayarlar kapat** {query.message.chat.title}\n\n⏸ : durdur\n▶️ : devam et\n🔇 : sesize al\n🔊 : sesi ac asistan\n⏹ : Bitir",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("⏹", callback_data="bitir"),
+                        InlineKeyboardButton("⏸", callback_data="durdur"),
+                        InlineKeyboardButton("▶️", callback_data="devam"),
+                    ],
+                    [
+                        InlineKeyboardButton("🔇", callback_data="kapat"),
+                        InlineKeyboardButton("🔊", callback_data="ac"),
+                    ],
+                    [InlineKeyboardButton("🗑 mkapat", callback_data="mkpt")],
+                ]
+            ),
+        )
     else:
         await query.answer("❌ **Zaten bir şey oynatılmıyor**", show_alert=True)
 

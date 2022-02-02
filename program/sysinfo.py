@@ -1,18 +1,19 @@
 # Copyright (C) 2021 Rishabh Project
 
+import platform
 import re
-import uuid
 import socket
+import uuid
 
 import psutil
-import platform
-from config import BOT_USERNAME
-from driver.filters import command
 from pyrogram import Client, filters
-from driver.decorators import sudo_users_only, humanbytes
 
+from config import BOT_USERNAME
+from driver.decorators import humanbytes, sudo_users_only
+from driver.filters import command
 
 # FETCH SYSINFO
+
 
 @Client.on_message(command(["sysinfo", f"sysinfo@{BOT_USERNAME}"]) & ~filters.edited)
 @sudo_users_only

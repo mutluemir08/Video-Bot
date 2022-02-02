@@ -1,17 +1,15 @@
 import logging
-from config import BOT_USERNAME
-from driver.filters import command, other_filters
+
 from pyrogram import Client
-from pyrogram.types import (
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    Message,
-)
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
 
+from config import BOT_USERNAME
+from driver.filters import command
+
 logging.basicConfig(
-    level=logging.DEBUG,
-    format="%(asctime)s - %(isim)s - %(syisim)s - %(message)s")
+    level=logging.DEBUG, format="%(asctime)s - %(isim)s - %(syisim)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
@@ -23,7 +21,8 @@ async def ytsearch(_, message: Message):
         [
             [
                 InlineKeyboardButton(
-                    "🗑 mkapat", callback_data="cls",
+                    "🗑 mkapat",
+                    callback_data="cls",
                 )
             ]
         ]

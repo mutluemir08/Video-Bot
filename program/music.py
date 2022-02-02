@@ -2,20 +2,19 @@
 # Commit Start Date 1/11/2021
 # Finished On 7/1/2022
 
-import re
-import asyncio
 
-from config import ASSISTANT_NAME, BOT_USERNAME, IMG_1, IMG_2
-from driver.filters import command, other_filters
-from driver.queues import QUEUE, add_to_queue
-from driver.jennie import call_py, user
-from driver.utils import bash
 from pyrogram import Client
 from pyrogram.errors import UserAlreadyParticipant, UserNotParticipant
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from pytgcalls import StreamType
 from pytgcalls.types.input_stream import AudioPiped
 from youtubesearchpython import VideosSearch
+
+from config import ASSISTANT_NAME, BOT_USERNAME, IMG_1, IMG_2
+from driver.filters import command, other_filters
+from driver.jennie import call_py, user
+from driver.queues import QUEUE, add_to_queue
+from driver.utils import bash
 
 
 def ytsearch(query: str):
@@ -53,7 +52,9 @@ async def play(c: Client, m: Message):
         ]
     )
     if m.sender_chat:
-        return await m.reply_text("Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm.")
+        return await m.reply_text(
+            "Bir Anonim Yöneticisiniz !\n\n» Anonim kullanıcılara hizmet edilmeyecek şekilde tasarlandım üzgünüm."
+        )
     try:
         aing = await c.get_me()
     except Exception as e:
@@ -61,16 +62,15 @@ async def play(c: Client, m: Message):
     a = await c.get_chat_member(chat_id, aing.id)
     if a.status != "yönetici":
         return await m.reply_text(
-            f"💡 Beni kullanabilmeniz için yönetici olmam gerekiyor")
+            f"💡 Beni kullanabilmeniz için yönetici olmam gerekiyor"
+        )
     if not a.can_manage_voice_chats:
         await m.reply_text(
-            "gerekli izin eksik:" + "\n\n» ❌ __Görüntülü sohbeti yönet__" 
+            "gerekli izin eksik:" + "\n\n» ❌ __Görüntülü sohbeti yönet__"
         )
         return
     if not a.can_delete_messages:
-        await m.reply_text(
-            "Gerekli izin eksik:" + "\n\n» ❌ _mesajları silme_" 
-        )
+        await m.reply_text("Gerekli izin eksik:" + "\n\n» ❌ _mesajları silme_")
         return
     if not a.can_invite_users:
         await m.reply_text("Gerekli izin eksik:" + "\n\n» ❌ __Kullanıcı ekle_")
@@ -81,7 +81,6 @@ async def play(c: Client, m: Message):
         if b.status == "yasaklandı":
             await m.reply_text(
                 f"@{ASSISTANT_NAME} **Bu grupta yasaklandı ** {m.chat.title}\n\n» **botu kullanmak istiyorsanız asistan yasağını kaldırın.**"
-               
             )
             return
     except UserNotParticipant:
@@ -93,9 +92,7 @@ async def play(c: Client, m: Message):
                 return
         else:
             try:
-                invitelink = await c.export_chat_invite_link(
-                    m.chat.id
-                )
+                invitelink = await c.export_chat_invite_link(m.chat.id)
                 if invitelink.startswith("https://t.me/+"):
                     invitelink = invitelink.replace(
                         "https://t.me/+", "https://t.me/joinchat/"
@@ -131,26 +128,28 @@ async def play(c: Client, m: Message):
                     reply_markup=keyboard,
                 )
             else:
-             try:
-                await suhu.edit("🔄 **katılma vc...**")
-                await call_py.join_group_call(
-                    chat_id,
-                    AudioPiped(
-                        dl,
-                    ),
-                    stream_type=StreamType().local_stream,
-                )
-                add_to_queue(chat_id, songname, dl, link, "ses", 0)
-                await suhu.delete()
-                requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
-                await m.reply_photo(
-                    photo=f"{IMG_2}",
-                    caption=f"🏷 **isim:** [{songname}]({link})\n💭 **Chat:** `{chat_id}`\n💡 **durum:** `oynatılıyor`\n🎧 **İsteyen:** {requester}\n📹 **şarkı türü:** `music`",
-                    reply_markup=keyboard,
-                )
-             except Exception as e:
-                await suhu.delete()
-                await m.reply_text(f"🚫 error:\n\n» {e}")
+                try:
+                    await suhu.edit("🔄 **katılma vc...**")
+                    await call_py.join_group_call(
+                        chat_id,
+                        AudioPiped(
+                            dl,
+                        ),
+                        stream_type=StreamType().local_stream,
+                    )
+                    add_to_queue(chat_id, songname, dl, link, "ses", 0)
+                    await suhu.delete()
+                    requester = (
+                        f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
+                    )
+                    await m.reply_photo(
+                        photo=f"{IMG_2}",
+                        caption=f"🏷 **isim:** [{songname}]({link})\n💭 **Chat:** `{chat_id}`\n💡 **durum:** `oynatılıyor`\n🎧 **İsteyen:** {requester}\n📹 **şarkı türü:** `music`",
+                        reply_markup=keyboard,
+                    )
+                except Exception as e:
+                    await suhu.delete()
+                    await m.reply_text(f"🚫 error:\n\n» {e}")
         else:
             if len(m.command) < 2:
                 await m.reply(

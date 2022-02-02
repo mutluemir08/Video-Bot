@@ -2,6 +2,12 @@ from datetime import datetime
 from sys import version_info
 from time import time
 
+from pyrogram import Client
+from pyrogram import __version__ as pyrover
+from pyrogram import filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from pytgcalls import __version__ as pytover
+
 from config import (
     ALIVE_IMG,
     ALIVE_NAME,
@@ -11,13 +17,9 @@ from config import (
     OWNER_NAME,
     UPDATES_CHANNEL,
 )
-from program import __version__
+from driver.filters import command
 from driver.jennie import user
-from driver.filters import command, other_filters
-from pyrogram import Client, filters
-from pyrogram import __version__ as pyrover
-from pytgcalls import (__version__ as pytover)
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from program import __version__
 
 __major__ = 0
 __minor__ = 2
@@ -52,8 +54,8 @@ async def _human_time_duration(seconds):
     command(["start", f"start@{BOT_USERNAME}"]) & filters.private & ~filters.edited
 )
 async def start_(client: Client, message: Message):
-     await message.reply_photo("https://telegra.ph/file/84c3fa6685479f7e1a5a6.jpg")
-     await message.reply_text(
+    await message.reply_photo("https://telegra.ph/file/84c3fa6685479f7e1a5a6.jpg")
+    await message.reply_text(
         f"""✨ **Merhaba{message.from_user.mention()} !**\n
 💭 [{BOT_NAME}](https://t.me/{BOT_USERNAME}) **botu sesli sohbetlerde canlı yayın video ve müzik akışını sağlar !**
 
@@ -82,11 +84,7 @@ async def start_(client: Client, message: Message):
                         "[► Kanal Destek ◄]", url=f"https://t.me/{UPDATES_CHANNEL}"
                     ),
                 ],
-                [
-                    InlineKeyboardButton(
-                        "🌐 Sohbet Grubu", url="https://t.me/gycyolcu"
-                    )
-                ],
+                [InlineKeyboardButton("🌐 Sohbet Grubu", url="https://t.me/gycyolcu")],
             ]
         ),
         disable_web_page_preview=True,
@@ -104,7 +102,9 @@ async def alive(client: Client, message: Message):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("✨ Destek Grup", url=f"https://t.me/{GROUP_SUPPORT}"),
+                InlineKeyboardButton(
+                    "✨ Destek Grup", url=f"https://t.me/{GROUP_SUPPORT}"
+                ),
                 InlineKeyboardButton(
                     "📣 Kanal Destek", url=f"https://t.me/{UPDATES_CHANNEL}"
                 ),
@@ -154,12 +154,18 @@ async def new_chat(c: Client, m: Message):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("📣 Destek kanal", url=f"https://t.me/{UPDATES_CHANNEL}"),
-                            InlineKeyboardButton("💭 Destek Grup", url=f"https://t.me/{GROUP_SUPPORT}")
+                            InlineKeyboardButton(
+                                "📣 Destek kanal", url=f"https://t.me/{UPDATES_CHANNEL}"
+                            ),
+                            InlineKeyboardButton(
+                                "💭 Destek Grup", url=f"https://t.me/{GROUP_SUPPORT}"
+                            ),
                         ],
                         [
-                            InlineKeyboardButton("👤 asistan", url=f"https://t.me/{ass_uname}")
-                        ]
+                            InlineKeyboardButton(
+                                "👤 asistan", url=f"https://t.me/{ass_uname}"
+                            )
+                        ],
                     ]
-                )
+                ),
             )

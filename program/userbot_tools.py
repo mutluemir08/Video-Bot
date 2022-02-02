@@ -1,11 +1,13 @@
 import asyncio
-from driver.jennie import user
-from pyrogram.types import Message
+
 from pyrogram import Client, filters
-from config import BOT_USERNAME, SUDO_USERS
-from driver.filters import command, other_filters
 from pyrogram.errors import UserAlreadyParticipant
+from pyrogram.types import Message
+
+from config import BOT_USERNAME, SUDO_USERS
 from driver.decorators import authorized_users_only, sudo_users_only
+from driver.filters import command
+from driver.jennie import user
 
 
 @Client.on_message(
@@ -20,23 +22,21 @@ async def join_chat(c: Client, m: Message):
             link_hash = (invite_link.replace("+", "")).split("t.me/")[1]
             await user.join_chat(f"https://t.me/joinchat/{link_hash}")
         await m.chat.promote_member(
-            (await user.get_me()).id,
-            can_manage_voice_chats=True
+            (await user.get_me()).id, can_manage_voice_chats=True
         )
         return await user.send_message(chat_id, "✅ Senin isteğin üzerine geldim")
     except UserAlreadyParticipant:
         admin = await m.chat.get_member((await user.get_me()).id)
         if not admin.can_manage_voice_chats:
             await m.chat.promote_member(
-                (await user.get_me()).id,
-                can_manage_voice_chats=True
+                (await user.get_me()).id, can_manage_voice_chats=True
             )
             return await user.send_message(chat_id, "✅ Asistan zaten sohbette")
         return await user.send_message(chat_id, "✅ Asistan zaten sohbette")
 
 
-@Client.on_message(command(["ayril",
-                            f"ayril@{BOT_USERNAME}"]) & filters.group & ~filters.edited
+@Client.on_message(
+    command(["ayril", f"ayril@{BOT_USERNAME}"]) & filters.group & ~filters.edited
 )
 @authorized_users_only
 async def leave_chat(_, m: Message):

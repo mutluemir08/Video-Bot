@@ -1,13 +1,16 @@
 # Copyright (C) 2021 By RishabhMusicProject
 
 import os
+
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from driver.filters import command, other_filters
-from driver.decorators import sudo_users_only, errors
+
+from driver.decorators import errors, sudo_users_only
+from driver.filters import command
 
 downloads = os.path.realpath("program/inme")
 raw = os.path.realpath(".")
+
 
 @Client.on_message(command(["tmz", "temizleme"]) & ~filters.edited)
 @errors
@@ -19,8 +22,7 @@ async def clear_downloads(_, message: Message):
             os.remove(os.path.join(downloads, file))
         await message.reply_text("✅ **indirilen tüm dosyalar sildi**")
     else:
-        return await message.reply_text("❌ **indirilen dosya yok**") 
-
+        return await message.reply_text("❌ **indirilen dosya yok**")
 
 
 @Client.on_message(command(["tmz", "temizleme"]) & ~filters.edited)
@@ -30,7 +32,7 @@ async def clear_raw(_, message: Message):
     ls_dir = os.listdir(raw)
     if ls_dir:
         for file in os.listdir(raw):
-            if file.endswith('.raw'):
+            if file.endswith(".raw"):
                 os.remove(os.path.join(raw, file))
         await message.reply_text("✅ **tüm  dosyalar silindi**")
     else:

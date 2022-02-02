@@ -2,36 +2,25 @@
 
 from __future__ import unicode_literals
 
-import asyncio
-import math
 import os
-import time
-from random import randint
-from urllib.parse import urlparse
 
-import aiofiles
-import aiohttp
 import requests
 import wget
 import yt_dlp
 from pyrogram import Client, filters
-from pyrogram.errors import FloodWait, MessageNotModified
-from pyrogram.types import Message
 from youtube_search import YoutubeSearch
 from yt_dlp import YoutubeDL
 
 from config import BOT_USERNAME as bn
-from driver.decorators import humanbytes
-from driver.filters import command, other_filters
-
+from driver.filters import command
 
 ydl_opts = {
-    'format': 'best',
-    'keepvideo': True,
-    'prefer_ffmpeg': False,
-    'geo_bypass': True,
-    'outtmpl': '%(title)s.%(ext)s',
-    'quite': True
+    "format": "best",
+    "keepvideo": True,
+    "prefer_ffmpeg": False,
+    "geo_bypass": True,
+    "outtmpl": "%(title)s.%(ext)s",
+    "quite": True,
 }
 
 
@@ -39,7 +28,7 @@ ydl_opts = {
 def song(_, message):
     query = " ".join(message.command[1:])
     m = message.reply("🔎 aranıyor...")
-    ydl_ops = {"format":"eniyises[ext=m4a]"}
+    ydl_ops = {"format": "eniyises[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
         link = f"https://youtube.com{results[0]['url_suffix']}"
@@ -149,4 +138,6 @@ async def lyrics(_, message):
         result = f"{resp['data']}"
         await rep.edit(result)
     except Exception:
-        await rep.edit("❌ **şarkı sözü sonuçları bulunamadı.**\n\n» **lütfen geçerli bir şarkı adı verin.**")
+        await rep.edit(
+            "❌ **şarkı sözü sonuçları bulunamadı.**\n\n» **lütfen geçerli bir şarkı adı verin.**"
+        )
