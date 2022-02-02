@@ -76,7 +76,7 @@ def song(_, message):
         )
         m.delete()
     except Exception as e:
-        m.edit("❌ Hatta, lütfen bekleyin")")
+        m.edit("❌ Hata, lütfen bekleyin")
         print(e)
 
     try:
@@ -119,7 +119,7 @@ async def vsong(client, message):
             ytdl_data = ytdl.extract_info(link, download=True)
             file_name = ytdl.prepare_filename(ytdl_data)
     except Exception as e:
-        return await msg.edit(f"🚫 **hatta:** {e}")
+        return await msg.edit(f"🚫 **hata:** {e}")
     preview = wget.download(thumbnail)
     await msg.edit("📤 **video indi...**")
     await message.reply_video(
