@@ -227,7 +227,7 @@ async def vplay(c: Client, m: Message):
                                 requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
                                 await m.reply_photo(
                                     photo=thumbnail,
-                                    caption=f"🏷 **isim:** [{songname}]({url})\n⏱ **Süre:** `{duration}`\n💡 **durum:** `Playing`\n🎧 **isteyen:** {requester}\n📹 **şarkı türü:** `Video`",
+                                    caption=f"🏷 **isim:** [{songname}]({url})\n⏱ **Süre:** `{duration}`\n💡 **durum:** `oynatılıyor`\n🎧 **isteyen:** {requester}\n📹 **şarkı türü:** `Video`",
                                     reply_markup=keyboard,
                                 )
                             except Exception as ep:
@@ -264,7 +264,7 @@ async def vplay(c: Client, m: Message):
                         )
                         await m.reply_photo(
                             photo=thumbnail,
-                            caption=f"💡 **Parça sıraya eklendi »** `{pos}`\n\n🏷 **Name:** [{songname}]({url}) | `video`\n⏱ **süre:** `{duration}`\n🎧 **isteyen:** {requester}",
+                            caption=f"💡 **Parça sıraya eklendi »** `{pos}`\n\n🏷 **isim:** [{songname}]({url}) | `video`\n⏱ **süre:** `{duration}`\n🎧 **isteyen:** {requester}",
                             reply_markup=keyboard,
                         )
                     else:
