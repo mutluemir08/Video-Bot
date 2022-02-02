@@ -1,4 +1,3 @@
-# Copyright (C) 2021 By RishabhMusicProject
 
 from driver.queues import QUEUE
 from pyrogram import Client, filters
@@ -18,9 +17,7 @@ async def cbstart(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""✨ **Merhaba[{query.message.chat.first_name}](tg://user?id={query.message.chat.id}) !**\n
 💭 **[{BOT_NAME}](https://t.me/{BOT_USERNAME}) Botu sesli sohbetlerde canlı yayın video ve müzik akışını sağlar  !**
-
 ❂ **Detaylı bilgi ve tüm komutlar için komutlar butonuna tıklayın !**
-
 ❂ **Botun temel komutları için temel komutlar butonuna tıklayın !**""",
         reply_markup=InlineKeyboardMarkup(
             [
@@ -58,21 +55,21 @@ async def cbstart(_, query: CallbackQuery):
 async def cbguides(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""❓ **Başlangıç aşağıdaki adımları uygulayın:**
-
 1.) **başlangıç beni gruba ekle.**
 2.) **bana yetki verin aonim yetkisi vermeyin.**
 3.) **Ardından /reload komutu ile admin listesini yenileyin .**
 3.) **grubunuza @{ASSISTANT_NAME} ekleyin veya /katil komutuyla davet edin.**
 4.) **botu başlatmadan önce sesli sohbeti açın .**
 5.) **Bazen /reload komutunu kullanarak botu daha sağlıklı bir hale getirebilirsiniz .**
-
 📌 **bot sesli sohbete katılmadıysa sesli sohbetin açık olup olmadığını kontrol edin veya /ayril yapıp tekrar /katil yapın .**
-
 💡 **çözüm ve önerileriniz için iletişime geçebilirsiniz : @{GROUP_SUPPORT}**
-
 ⚡ __Powered by {BOT_NAME} A.I__""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙 geri git", callback_data="cbstart")]]
+            [
+                [
+                    InlineKeyboardButton("🔙 geri git", callback_data="cbstart"),
+                ],
+            ],
         ),
     )
 
@@ -81,9 +78,7 @@ async def cbguides(_, query: CallbackQuery):
 async def cbcmds(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""✨ **Hello [{query.message.chat.first_name}](tg://user?id={query.message.chat.id}) !**
-
 » **aşağıdaki butonları kullanarak mevcut komutları görebilirsiniz !**
-
 ⚡ __Powered by {BOT_NAME} A.I__""",
         reply_markup=InlineKeyboardMarkup(
             [
@@ -104,7 +99,6 @@ async def cbcmds(_, query: CallbackQuery):
 async def cbbasic(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""🏮 Basit komutlar listesi:
-
 » /oynat istediğiniz şarkıyı direk bulup oynatır
 » /voynat isteidğin videoyu direk bulup oynatır 
 » /atla sıradaki şarkıya geçer
@@ -114,7 +108,6 @@ async def cbbasic(_, query: CallbackQuery):
 » /durdur akışı durdurur
 » /bitir akışı bitirip sesli sohbetten ayrılır 
 » /canlı canlı yayın akışını sağlar 
-
 ⚡️ __Powered by {BOT_NAME} AI__""",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("🔙 Go Back", callback_data="cbcmds")]]
@@ -126,7 +119,6 @@ async def cbbasic(_, query: CallbackQuery):
 async def cbadmin(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""🏮 admin komutu:
-
 » /durdur - akışı durdurur 
 » /devam - akışa devam eder 
 » /atla - sıradaki parçaya geçer
@@ -144,9 +136,7 @@ async def cbadmin(_, query: CallbackQuery):
 async def cbsudo(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""🏮 geliştirci komutları:
-
 » bu komutlar sadece geliştirciye aittir bilgi ve destek @legenddestek
-
 ⚡ __Powered by {BOT_NAME} AI__""",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("🔙 Geri git", callback_data="cbcmds")]]
@@ -164,7 +154,7 @@ async def cbmenu(_, query: CallbackQuery):
     chat_id = query.message.chat.id
     if chat_id in QUEUE:
           await query.edit_message_text(
-              f"⚙️ **ayarlar kapat** {query.message.chat.title}\n\n⏸ : durdur\n▶️ : devam et\n🔇 : sesize al\n🔊 : sesi ac asistan\n⏹ : Bitir
+              f"⚙️ **ayarlar kapat** {query.message.chat.title}\n\n⏸ : durdur\n▶️ : devam et\n🔇 : sesize al\n🔊 : sesi ac asistan\n⏹ : Bitir"
               reply_markup=InlineKeyboardMarkup(
                   [[
                       InlineKeyboardButton("⏹", callback_data="bitir"),
@@ -179,7 +169,7 @@ async def cbmenu(_, query: CallbackQuery):
              ),
          )
     else:
-        await query.answer("❌ **Zaten bir şey oynatılmıyor**")", show_alert=True)
+        await query.answer("❌ **Zaten bir şey oynatılmıyor**" show_alert=True)
 
 
 @Client.on_callback_query(filters.regex("cls"))
