@@ -133,7 +133,7 @@ async def cbadmin(_, query: CallbackQuery):
 » /son - sonlandırır
 » /kapat - asistanın sesini kapatır 
 » /ac - asistanın sesini açar 
-
+» /canlı canlı yayın akışını sağlar
 ⚡️ __Powered by {BOT_NAME} AI__""",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("🔙 Geri Git", callback_data="cbcmds")]]
