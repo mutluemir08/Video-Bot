@@ -23,17 +23,17 @@ async def inline(client: Client, query: InlineQuery):
     else:
         search = VideosSearch(search_query, limit=50)
 
-        for result in search.result()["sonuç"]:
+        for result in search.result()["result"]:
             answers.append(
                 InlineQueryResultArticle(
-                    title=result["başlık"],
+                    title=result["title"],
                     description="{}, {} views.".format(
-                        result["süre"], result["viewCount"]["short"]
+                        result["duration"], result["viewCount"]["short"]
                     ),
                     input_message_content=InputTextMessageContent(
                         "🔗 https://www.youtube.com/watch?v={}".format(result["id"])
                     ),
-                    thumb_url=result["minikresim"][0]["url"],
+                    thumb_url=result["thumbnails"][0]["url"],
                 )
             )
 
