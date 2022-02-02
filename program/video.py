@@ -95,7 +95,7 @@ async def vplay(c: Client, m: Message):
     try:
         ubot = (await user.get_me()).id
         b = await c.get_chat_member(chat_id, ubot)
-        if b.status == "kicked":
+        if b.status == "yasaklı":
             await m.reply_text(
                 f"@{ASSISTANT_NAME} **asistan yasaklanmış** {m.chat.title}\n\n» **botu kullanmak istiyorsanız asistanın yasağını kaldırın.**"
             )
@@ -154,7 +154,7 @@ async def vplay(c: Client, m: Message):
                 requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
                 await m.reply_photo(
                     photo=f"{IMG_1}",
-                    caption=f"💡 **Track added to queue »** `{pos}`\n\n🏷 **isim:** [{songname}]({link}) | `video`\n💭 **Chat:** `{chat_id}`\n🎧 **isteyen:** {requester}",
+                    caption=f"💡 **Parça sıraya eklendi »** `{pos}`\n\n🏷 **isim:** [{songname}]({link}) | `video`\n💭 **Chat:** `{chat_id}`\n🎧 **isteyen:** {requester}",
                     reply_markup=keyboard,
                 )
             else:
