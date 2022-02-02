@@ -285,10 +285,8 @@ async def change_volume(client, m: Message):
     if chat_id in QUEUE:
         try:
             await call_py.change_volume_call(chat_id, volume=int(range))
-            await m.reply("✅ Ses ayarlandı**"){range}`%"
-                
-            )
+            await m.reply(f"✅ Ses ayarlandı {range}`%**")
         except Exception as e:
-            await m.reply(f"🚫 **error:**\n\n`{e}`")
+            await m.reply(f"🚫 **Hata:**\n\n`{e}`")
     else:
         await m.reply("❌ **Aktif yayın bulunamadı**")
