@@ -174,7 +174,7 @@ async def play(c: Client, m: Message):
                     else:
                         if chat_id in QUEUE:
                             pos = add_to_queue(
-                                chat_id, songname, ytlink, url, "ses"", 0
+                                chat_id, songname, ytlink, url, "Audio", 0
                             )
                             await suhu.delete()
                             requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
