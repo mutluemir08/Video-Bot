@@ -52,42 +52,39 @@ async def _human_time_duration(seconds):
     command(["start", f"start@{BOT_USERNAME}"]) & filters.private & ~filters.edited
 )
 async def start_(client: Client, message: Message):
-     await message.reply_photo("https://telegra.ph/Rishabh-Bhan-12-06")
+     await message.reply_photo("https://telegra.ph/file/84c3fa6685479f7e1a5a6.jpg")
      await message.reply_text(
-        f"""✨ **Welcome {message.from_user.mention()} !**\n
-💭 [{BOT_NAME}](https://t.me/{BOT_USERNAME}) **Allows you to play music and video on groups through the new Telegram's video chats!**
+        f"""✨ **Merhaba{message.from_user.mention()} !**\n
+💭 [{BOT_NAME}](https://t.me/{BOT_USERNAME}) **botu sesli sohbetlerde canlı yayın video ve müzik akışını sağlar !**
 
-❂ **Find out all the Bot's commands and how they work by clicking on the » 📚 Commands button!**
+❂ **Detaylı bilgi ve tüm komutlar için komutlar butonuna tıklayın !**
 
-❂ **To know how to use this bot, please click on the » ❓ Basic Guide button!**
+❂ **Botun temel komutları için temel komutlar butonuna tıklayın**
 """,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "➕ Add me to your Group ➕",
+                        "➕ Gruba ekle ➕",
                         url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
                     )
                 ],
-                [InlineKeyboardButton("❓ Basic Guide", callback_data="cbhowtouse")],
+                [InlineKeyboardButton("❓ Temel komutlar", callback_data="cbhowtouse")],
                 [
-                    InlineKeyboardButton("📚 Commands", callback_data="cbcmds"),
-                    InlineKeyboardButton("❤️ Donate", url=f"https://t.me/{OWNER_NAME}"),
+                    InlineKeyboardButton("📚 komutlar", callback_data="cbcmds"),
+                    InlineKeyboardButton("Sahip", url=f"https://t.me/{OWNER_NAME}"),
                 ],
                 [
                     InlineKeyboardButton(
-                        "[► Official Group ◄]", url=f"https://t.me/{GROUP_SUPPORT}"
+                        "[► Grup Destek ◄]", url=f"https://t.me/{GROUP_SUPPORT}"
                     ),
                     InlineKeyboardButton(
-                        "[► Official Channel ◄]", url=f"https://t.me/{UPDATES_CHANNEL}"
+                        "[► Kanal Destek ◄]", url=f"https://t.me/{UPDATES_CHANNEL}"
                     ),
-                ],
-                [   
-                    InlineKeyboardButton(text="[► Inline ◄]", switch_inline_query_current_chat=""),
                 ],
                 [
                     InlineKeyboardButton(
-                        "🌐 Source Code", url="https://github.com/Rishabhbhan4/Video-Bot"
+                        "🌐 Sohbet Grubu", url="https://t.me/gycyolcu"
                     )
                 ],
             ]
@@ -107,15 +104,15 @@ async def alive(client: Client, message: Message):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("✨ Group", url=f"https://t.me/{GROUP_SUPPORT}"),
+                InlineKeyboardButton("✨ Destek Grup", url=f"https://t.me/{GROUP_SUPPORT}"),
                 InlineKeyboardButton(
-                    "📣 Channel", url=f"https://t.me/{UPDATES_CHANNEL}"
+                    "📣 Kanal Destek", url=f"https://t.me/{UPDATES_CHANNEL}"
                 ),
             ]
         ]
     )
 
-    alive = f"**Hii {message.from_user.mention()}, i'm {BOT_NAME}**\n\n✨ Bot is working properly\n🍀 My Master: [{ALIVE_NAME}](https://t.me/{OWNER_NAME})\n✨ Bot Version: `v{__version__}`\n🍀 Pyrogram Version: `{pyrover}`\n✨ Python Version: `{__python_version__}`\n🍀 PyTgCalls version: `{pytover.__version__}`\n✨ Uptime Status: `{uptime}`\n\n**Thanks for Adding me here, for playing video & music on your Group's video chat** ❤"
+    alive = f"**Merhaba {message.from_user.mention()}, ben {BOT_NAME}**\n\n✨ Bot düzgün çalışıyor\n🍀 Sahip: [{ALIVE_NAME}](https://t.me/{OWNER_NAME})\n✨ Bot Version: `v{__version__}`\n🍀 Pyrogram Version: `{pyrover}`\n✨ Python Version: `{__python_version__}`\n🍀 PyTgCalls version: `{pytover.__version__}`\n✨ Uptime Status: `{uptime}`\n\n**Beni Buraya eklediğiniz için teşekkürler** ❤"
 
     await message.reply_photo(
         photo=f"{ALIVE_IMG}",
@@ -138,9 +135,9 @@ async def get_uptime(client: Client, message: Message):
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
     await message.reply_text(
-        "🤖 bot status:\n"
+        "🤖 bot durumu:\n"
         f"• **uptime:** `{uptime}`\n"
-        f"• **start time:** `{START_TIME_ISO}`"
+        f"• **başlat zaman:** `{START_TIME_ISO}`"
     )
 
 
@@ -151,17 +148,17 @@ async def new_chat(c: Client, m: Message):
     for member in m.new_chat_members:
         if member.id == bot_id:
             return await m.reply(
-                "❤️ **Thanks for adding me to the Group !**\n\n"
-                "**Promote me as administrator of the Group, otherwise I will not be able to work properly, and don't forget to type /userbotjoin for invite the assistant.**\n\n"
-                "**Once done, type** /reload",
+                "❤️ **Beni Gruba eklediğin için teşekkür ederim!**\n\n"
+                "**Asistanı çağırmak için /katil komutunu kullanın veya el ile ekleyin.**\n\n"
+                "**daha sonra** /yenile",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("📣 Channel", url=f"https://t.me/{UPDATES_CHANNEL}"),
-                            InlineKeyboardButton("💭 Support", url=f"https://t.me/{GROUP_SUPPORT}")
+                            InlineKeyboardButton("📣 Destek kanal", url=f"https://t.me/{UPDATES_CHANNEL}"),
+                            InlineKeyboardButton("💭 Destek Grup", url=f"https://t.me/{GROUP_SUPPORT}")
                         ],
                         [
-                            InlineKeyboardButton("👤 Assistant", url=f"https://t.me/{ass_uname}")
+                            InlineKeyboardButton("👤 asistan", url=f"https://t.me/{ass_uname}")
                         ]
                     ]
                 )
