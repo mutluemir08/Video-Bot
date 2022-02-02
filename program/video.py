@@ -1,6 +1,3 @@
-# Copyright (C) 2021 By Rishabh Music-Project
-# Commit Start Date 1/11/2021
-# Finished On 7/1/2022
 
 import re
 import asyncio
@@ -90,7 +87,7 @@ async def vplay(c: Client, m: Message):
         )
         return
     if not a.can_invite_users:
-        await m.reply_text(" Gerekli izin eksik:" + "\n\n» ❌ __Kullanıcıları ekleme__"
+        await m.reply_text(" Gerekli izin eksik:" + "\n\n» ❌ __Kullanıcıları ekleme__")
         return
     try:
         ubot = (await user.get_me()).id
