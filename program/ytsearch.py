@@ -11,7 +11,7 @@ from youtube_search import YoutubeSearch
 
 logging.basicConfig(
     level=logging.DEBUG,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    format="%(asctime)s - %(isim)s - %(syisim)s - %(message)s")
 logger = logging.getLogger(__name__)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
@@ -34,7 +34,7 @@ async def ytsearch(_, message: Message):
             await message.reply_text("/ara **komutu argümana ihtiyac duyar !**")
             return
         query = message.text.split(None, 1)[1]
-        m = await message.reply_text("🔎 **Searching...**")
+        m = await message.reply_text("🔎 **aranıyor...**")
         results = YoutubeSearch(query, max_results=5).to_dict()
         i = 0
         text = ""
