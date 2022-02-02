@@ -168,7 +168,7 @@ async def cbmenu(_, query: CallbackQuery):
              ),
          )
     else:
-        await query.answer("❌ **Zaten bir şey oynatılmıyor**" show_alert=True)
+        await query.answer("❌ **Zaten bir şey oynatılmıyor**", show_alert=True)
 
 
 @Client.on_callback_query(filters.regex("cls"))
