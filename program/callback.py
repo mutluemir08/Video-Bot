@@ -17,9 +17,9 @@ from config import (
 async def cbstart(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""✨ **Merhaba[{query.message.chat.first_name}](tg://user?id={query.message.chat.id}) !**\n
-💭 **[{BOT_NAME}](https://t.me/{BOT_USERNAME}) Botu sesli sohbetlerde video ve müzik akışını sağlar  !**
+💭 **[{BOT_NAME}](https://t.me/{BOT_USERNAME}) Botu sesli sohbetlerde canlı yayın video ve müzik akışını sağlar  !**
 
-❂ **Detaylı bilgi ve tüm komutları görmek için komutlar düğmesine tıklayın !**
+❂ **Detaylı bilgi ve tüm komutlar için komutlar butonuna tıklayın !**
 
 ❂ **Botun temel komutları için temel komutlar butonuna tıklayın !**""",
         reply_markup=InlineKeyboardMarkup(
@@ -27,20 +27,20 @@ async def cbstart(_, query: CallbackQuery):
                 [
                     InlineKeyboardButton(
                         "➕ Gruba Ekle ➕",
-                        url=f"https://t.me/Legend_mzk_bot/{BOT_USERNAME}?startgroup=true",
+                        url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
                     )
                 ],
                 [InlineKeyboardButton("❓ Temel komutlar", callback_data="kılavuz")],
                 [
                     InlineKeyboardButton("🧐 komutlar", callback_data="cbcmds"),
-                    InlineKeyboardButton("❤ sahip", url=f"https://t.me/evetbenim38/{OWNER_NAME}"),
+                    InlineKeyboardButton("❤ sahip", url=f"https://t.me/{OWNER_NAME}"),
                 ],
                 [
                     InlineKeyboardButton(
-                        "👥 Destek Grup", url=f"https://t.me/botdestekk/{GROUP_SUPPORT}"
+                        "👥 Destek Grup", url=f"https://t.me/{GROUP_SUPPORT}"
                     ),
                     InlineKeyboardButton(
-                        "📣 Kanal destek", url=f"https://t.me/legenddestek/{UPDATES_CHANNEL}"
+                        "📣 Kanal destek", url=f"https://t.m/{UPDATES_CHANNEL}"
                     ),
                 ],
                 [
@@ -113,7 +113,7 @@ async def cbbasic(_, query: CallbackQuery):
 » /devam duraklatığınız şarkıyı devam ettirir
 » /durdur akışı durdurur
 » /bitir akışı bitirip sesli sohbetten ayrılır 
-
+» /canlı canlı yayın akışını sağlar 
 
 ⚡️ __Powered by {BOT_NAME} AI__""",
         reply_markup=InlineKeyboardMarkup(
