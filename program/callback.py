@@ -73,7 +73,7 @@ async def cbguides(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbcmds"))
 async def cbcmds(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""✨ **Hello [{query.message.chat.first_name}](tg://user?id={query.message.chat.id}) !**
+        f"""✨ **Merhaba [{query.message.chat.first_name}](tg://user?id={query.message.chat.id}) !**
 » **aşağıdaki butonları kullanarak mevcut komutları görebilirsiniz !**
 ⚡ __Powered by {BOT_NAME} A.I__""",
         reply_markup=InlineKeyboardMarkup(
@@ -155,15 +155,15 @@ async def cbmenu(_, query: CallbackQuery):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("⏹", callback_data="bitir"),
-                        InlineKeyboardButton("⏸", callback_data="durdur"),
-                        InlineKeyboardButton("▶️", callback_data="devam"),
+                        InlineKeyboardButton("⏹", callback_data="cbstop"),
+                        InlineKeyboardButton("⏸", callback_data="cbpause"),
+                        InlineKeyboardButton("▶️", callback_data="cbresume"),
                     ],
                     [
-                        InlineKeyboardButton("🔇", callback_data="kapat"),
-                        InlineKeyboardButton("🔊", callback_data="ac"),
+                        InlineKeyboardButton("🔇", callback_data="cbmute"),
+                        InlineKeyboardButton("🔊", callback_data="cbunmute"),
                     ],
-                    [InlineKeyboardButton("🗑 mkapat", callback_data="mkpt")],
+                    [InlineKeyboardButton("🗑 mkapat", callback_data="cls")],
                 ]
             ),
         )
