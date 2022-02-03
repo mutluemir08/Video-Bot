@@ -135,7 +135,7 @@ async def cbadmin(_, query: CallbackQuery):
 » /ac - asistanın sesini açar 
 » /canlı canlı yayın akışını sağlar
 
-⚡️ __Powered by {BOT_NAME} AI__""",
+⚡️ __Teşekkürler {BOT_NAME} Kullanıcıları__""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -151,7 +151,7 @@ async def cbsudo(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""🏮 geliştirci komutları:
 » bu komutlar sadece geliştirciye aittir bilgi ve destek @legenddestek
-⚡ __Powered by {BOT_NAME} AI__""",
+⚡ __Teşekkürler{BOT_NAME} Kullanıcıları__""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
