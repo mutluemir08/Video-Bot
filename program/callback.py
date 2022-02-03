@@ -82,7 +82,7 @@ async def cbcmds(_, query: CallbackQuery):
                     InlineKeyboardButton("👷🏻 Admin komut", callback_data="cbadmin"),
                     InlineKeyboardButton("🧙🏻 geliştirci", callback_data="cbsudo"),
                 ],
-                [InlineKeyboardButton("📚 basit komut", callback_data="cbbasic")],
+                [InlineKeyboardButton("📚 basit komutlar", callback_data="cbbasic")],
                 [InlineKeyboardButton("🔙 geri dön", callback_data="cbstart")],
             ]
         ),
