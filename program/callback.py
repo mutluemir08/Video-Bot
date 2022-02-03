@@ -15,32 +15,28 @@ from driver.queues import QUEUE
 @Client.on_callback_query(filters.regex("cbstart"))
 async def cbstart(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""✨ **Merhaba[{query.message.chat.first_name}](tg://user?id={query.message.chat.id}) !**\n
+        f"""✨ **Merhaba {query.from_user.mention} !**\n
 💭 **[{BOT_NAME}](https://t.me/{BOT_USERNAME}) Botu sesli sohbetlerde canlı yayın video ve müzik akışını sağlar  !**
 ❂ **Detaylı bilgi ve tüm komutlar için komutlar butonuna tıklayın !**
-❂ **Botun temel komutları için temel komutlar butonuna tıklayın !**""",
-        reply_markup=InlineKeyboardMarkup(
+❂ **Botun temel komutları için temel komutlar butonuna tıklayın !**""", reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        "➕ Gruba Ekle ➕",
-                        url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
-                    )
+                    InlineKeyboardButton("➕ Gruba Ekle ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true",)
                 ],
-                [InlineKeyboardButton("❓ Basit komutlar ", callback_data="cbhowtouse")],
+                [
+                    InlineKeyboardButton("❓ Basit komutlar ", callback_data="cbhowtouse"),
+                ],
                 [
                     InlineKeyboardButton("🧐 komutlar", callback_data="cbcmds"),
                     InlineKeyboardButton("❤ sahip", url=f"https://t.me/{OWNER_NAME}"),
                 ],
                 [
-                    InlineKeyboardButton(
-                        "👥 Destek Grup", url=f"https://t.me/{GROUP_SUPPORT}"
-                    ),
-                    InlineKeyboardButton(
-                        "📣 Kanal destek", url=f"https://t.m/{UPDATES_CHANNEL}"
-                    ),
+                    InlineKeyboardButton("👥 Destek Grup", url=f"https://t.me/{GROUP_SUPPORT}"),
+                    InlineKeyboardButton("📣 Kanal destek", url=f"https://t.me/{UPDATES_CHANNEL}"),
                 ],
-                [InlineKeyboardButton("🌐 Sohbet grubu", url="https://t.me/gycyolcu")],
+                [
+                    InlineKeyboardButton("🌐 Sohbet grubu", url="https://t.me/gycyolcu"),
+                ],
             ]
         ),
         disable_web_page_preview=True,
@@ -82,8 +78,12 @@ async def cbcmds(_, query: CallbackQuery):
                     InlineKeyboardButton("👷🏻 Admin komut", callback_data="cbadmin"),
                     InlineKeyboardButton("🧙🏻 geliştirci", callback_data="cbsudo"),
                 ],
-                [InlineKeyboardButton("📚 basit komutlar", callback_data="cbbasic")],
-                [InlineKeyboardButton("🔙 geri dön", callback_data="cbstart")],
+                [
+                    InlineKeyboardButton("📚 basit komutlar", callback_data="cbbasic"),
+                ],
+                [
+                    InlineKeyboardButton("🔙 geri dön", callback_data="cbstart"),
+                ],
             ]
         ),
     )
@@ -104,7 +104,11 @@ async def cbbasic(_, query: CallbackQuery):
 » /canlı canlı yayın akışını sağlar 
 ⚡️ __Powered by {BOT_NAME} AI__""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙 Geri Git", callback_data="cbcmds")]]
+            [
+                [
+                    InlineKeyboardButton("🔙 Geri Git", callback_data="cbcmds"),
+                ],
+            ],
         ),
     )
 
@@ -120,9 +124,14 @@ async def cbadmin(_, query: CallbackQuery):
 » /kapat - asistanın sesini kapatır 
 » /ac - asistanın sesini açar 
 » /canlı canlı yayın akışını sağlar
+
 ⚡️ __Powered by {BOT_NAME} AI__""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙 Geri Git", callback_data="cbcmds")]]
+            [
+                [
+                    InlineKeyboardButton("🔙 Geri Git", callback_data="cbcmds"),
+                ],
+            ],
         ),
     )
 
@@ -134,7 +143,11 @@ async def cbsudo(_, query: CallbackQuery):
 » bu komutlar sadece geliştirciye aittir bilgi ve destek @legenddestek
 ⚡ __Powered by {BOT_NAME} AI__""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙 Geri git", callback_data="cbcmds")]]
+            [
+                [
+                    InlineKeyboardButton("🔙 Geri git", callback_data="cbcmds"),
+                ],
+            ],
         ),
     )
 
@@ -163,7 +176,9 @@ async def cbmenu(_, query: CallbackQuery):
                         InlineKeyboardButton("🔇", callback_data="cbmute"),
                         InlineKeyboardButton("🔊", callback_data="cbunmute"),
                     ],
-                    [InlineKeyboardButton("🗑 mkapat", callback_data="cls")],
+                    [
+                        InlineKeyboardButton("🗑 mkapat", callback_data="cls"),
+                    ],
                 ]
             ),
         )
