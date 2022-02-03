@@ -116,15 +116,15 @@ async def play(c: Client, m: Message):
                     if replied.audio.file_name:
                         songname = replied.audio.file_name[:70]
                     else:
-                        songname = "ses"
+                        songname = "audio"
             elif replied.voice:
-                songname = "sesli Not"
+                songname = "Voice note"
             if chat_id in QUEUE:
-                pos = add_to_queue(chat_id, songname, dl, link, "ses", 0)
+                pos = add_to_queue(chat_id, songname, dl, link, "audio", 0)
                 await suhu.delete()
                 await m.reply_photo(
                     photo=f"{IMG_1}",
-                    caption=f"💡 **Sıraya Eklendi »** `{pos}`\n\n🏷 **isim:** [{songname}]({link}) | `music`\n💭 **Chat:** `{chat_id}`\n🎧 **Request by:** {m.from_user.mention()}",
+                    caption=f"💡 **Sıraya Eklendi »** `{pos}`\n\n🏷 **isim:** [{songname}]({link}) | `music`\n💭 **Chat:** `{chat_id}`\n🎧 **isteyen:** {m.from_user.mention()}",
                     reply_markup=keyboard,
                 )
             else:
@@ -137,7 +137,7 @@ async def play(c: Client, m: Message):
                         ),
                         stream_type=StreamType().local_stream,
                     )
-                    add_to_queue(chat_id, songname, dl, link, "ses", 0)
+                    add_to_queue(chat_id, songname, dl, link, "audio", 0)
                     await suhu.delete()
                     requester = (
                         f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
@@ -192,7 +192,7 @@ async def play(c: Client, m: Message):
                                     ),
                                     stream_type=StreamType().local_stream,
                                 )
-                                add_to_queue(chat_id, songname, ytlink, url, "ses", 0)
+                                add_to_queue(chat_id, songname, ytlink, url, "audio", 0)
                                 await suhu.delete()
                                 requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
                                 await m.reply_photo(
@@ -220,13 +220,13 @@ async def play(c: Client, m: Message):
                 url = search[1]
                 duration = search[2]
                 thumbnail = search[3]
-                format = "eniyi[ext=m4a]"
+                format = "bestaudio[ext=m4a]"
                 veez, ytlink = await ytdl(format, url)
                 if veez == 0:
                     await suhu.edit(f"❌ sorun-dl algılandı\n\n» `{ytlink}`")
                 else:
                     if chat_id in QUEUE:
-                        pos = add_to_queue(chat_id, songname, ytlink, url, "ses", 0)
+                        pos = add_to_queue(chat_id, songname, ytlink, url, "audio", 0)
                         await suhu.delete()
                         requester = (
                             f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
@@ -246,7 +246,7 @@ async def play(c: Client, m: Message):
                                 ),
                                 stream_type=StreamType().local_stream,
                             )
-                            add_to_queue(chat_id, songname, ytlink, url, "ses", 0)
+                            add_to_queue(chat_id, songname, ytlink, url, "audio", 0)
                             await suhu.delete()
                             requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
                             await m.reply_photo(
