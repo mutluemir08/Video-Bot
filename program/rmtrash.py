@@ -8,7 +8,7 @@ from pyrogram.types import Message
 from driver.decorators import errors, sudo_users_only
 from driver.filters import command
 
-downloads = os.path.realpath("program/inme")
+downloads = os.path.realpath("program/downloads")
 raw = os.path.realpath(".")
 
 
