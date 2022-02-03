@@ -71,7 +71,7 @@ async def start_(client: Client, message: Message):
                         url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
                     )
                 ],
-                [InlineKeyboardButton("❓ Temel komutlar", callback_data="cbhowtouse")],
+                [InlineKeyboardButton("❓ Basit komutlar", callback_data="cbhowtouse")],
                 [
                     InlineKeyboardButton("📚 komutlar", callback_data="cbcmds"),
                     InlineKeyboardButton("Sahip", url=f"https://t.me/{OWNER_NAME}"),
