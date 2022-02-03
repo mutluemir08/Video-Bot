@@ -129,7 +129,7 @@ async def resume(client, m: Message):
         try:
             await call_py.resume_stream(chat_id)
             await m.reply(
-                "▶️ **Parça devam ettirildi.**\n\n• **Yayını duraklatmak için**\n» /devam komutunu kullanın."
+                "▶️ **Parça devam ettirildi.**\n\n• **Yayını duraklatmak için**\n» /durdur komutunu kullanın."
             )
         except Exception as e:
             await m.reply(f"🚫 **error:**\n\n`{e}`")
