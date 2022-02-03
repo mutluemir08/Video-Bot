@@ -18,21 +18,31 @@ async def cbstart(_, query: CallbackQuery):
         f"""✨ **Merhaba {query.from_user.mention} !**\n
 💭 **[{BOT_NAME}](https://t.me/{BOT_USERNAME}) Botu sesli sohbetlerde canlı yayın video ve müzik akışını sağlar  !**
 ❂ **Detaylı bilgi ve tüm komutlar için komutlar butonuna tıklayın !**
-❂ **Botun temel komutları için temel komutlar butonuna tıklayın !**""", reply_markup=InlineKeyboardMarkup(
+❂ **Botun temel komutları için temel komutlar butonuna tıklayın !**""",
+        reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("➕ Gruba Ekle ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true",)
+                    InlineKeyboardButton(
+                        "➕ Gruba Ekle ➕",
+                        url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+                    )
                 ],
                 [
-                    InlineKeyboardButton("❓ Basit komutlar ", callback_data="cbhowtouse"),
+                    InlineKeyboardButton(
+                        "❓ Basit komutlar ", callback_data="cbhowtouse"
+                    ),
                 ],
                 [
                     InlineKeyboardButton("🧐 komutlar", callback_data="cbcmds"),
                     InlineKeyboardButton("❤ sahip", url=f"https://t.me/{OWNER_NAME}"),
                 ],
                 [
-                    InlineKeyboardButton("👥 Destek Grup", url=f"https://t.me/{GROUP_SUPPORT}"),
-                    InlineKeyboardButton("📣 Kanal destek", url=f"https://t.me/{UPDATES_CHANNEL}"),
+                    InlineKeyboardButton(
+                        "👥 Destek Grup", url=f"https://t.me/{GROUP_SUPPORT}"
+                    ),
+                    InlineKeyboardButton(
+                        "📣 Kanal destek", url=f"https://t.me/{UPDATES_CHANNEL}"
+                    ),
                 ],
                 [
                     InlineKeyboardButton("🌐 Sohbet grubu", url="https://t.me/gycyolcu"),
