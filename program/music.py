@@ -47,7 +47,7 @@ async def play(c: Client, m: Message):
         [
             [
                 InlineKeyboardButton(text="• Mᴇɴᴜ", callback_data="cbmenu"),
-                InlineKeyboardButton(text="• Grup", url=f"https://t.me/botdestekk"),
+                InlineKeyboardButton(text="• Group", url=f"https://t.me/botdestekk"),
             ]
         ]
     )
@@ -60,7 +60,7 @@ async def play(c: Client, m: Message):
     except Exception as e:
         return await m.reply_text(f"error:\n\n{e}")
     a = await c.get_chat_member(chat_id, aing.id)
-    if a.status != "yönetici":
+    if a.status != "Administrator":
         return await m.reply_text(
             f"💡 Beni kullanabilmeniz için yönetici olmam gerekiyor"
         )
