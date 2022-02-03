@@ -65,7 +65,7 @@ async def cbguides(_, query: CallbackQuery):
 5.) **Bazen /reload komutunu kullanarak botu daha sağlıklı bir hale getirebilirsiniz .**
 📌 **bot sesli sohbete katılmadıysa sesli sohbetin açık olup olmadığını kontrol edin veya /ayril yapıp tekrar /katil yapın .**
 💡 **çözüm ve önerileriniz için iletişime geçebilirsiniz : @{GROUP_SUPPORT}**
-⚡ __Powered by {BOT_NAME} A.I__""",
+⚡ __keyifli dinlemeler 🙋‍♂️_""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -81,7 +81,7 @@ async def cbcmds(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""✨ **Merhaba [{query.message.chat.first_name}](tg://user?id={query.message.chat.id}) !**
 » **aşağıdaki butonları kullanarak mevcut komutları görebilirsiniz !**
-⚡ __Powered by {BOT_NAME} A.I__""",
+⚡ __Daha fazla bilgi için @botdestekk__""", 
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -112,7 +112,7 @@ async def cbbasic(_, query: CallbackQuery):
 » /durdur akışı durdurur
 » /bitir akışı bitirip sesli sohbetten ayrılır 
 » /canlı canlı yayın akışını sağlar 
-⚡️ __Powered by {BOT_NAME} AI__""",
+⚡️ __Daha fazla bilgi için @botdestekk__""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -135,7 +135,7 @@ async def cbadmin(_, query: CallbackQuery):
 » /ac - asistanın sesini açar 
 » /canlı canlı yayın akışını sağlar
 
-⚡️ __Teşekkürler {BOT_NAME} Kullanıcıları__""",
+⚡️ __Daha fazla bilgi için @botdestekk__""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -151,7 +151,7 @@ async def cbsudo(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""🏮 geliştirci komutları:
 » bu komutlar sadece geliştirciye aittir bilgi ve destek @legenddestek
-⚡ __Teşekkürler{BOT_NAME} Kullanıcıları__""",
+⚡ __keyifli dinlemeler 🙋‍♂️__""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
