@@ -20,10 +20,10 @@ from driver.utils import bash
 def ytsearch(query: str):
     try:
         search = VideosSearch(query, limit=1).result()
-        data = search["sonuç"][0]
-        songname = data["başlık"]
+        data = search["result"][0]
+        songname = data["title"]
         url = data["link"]
-        duration = data["süre"]
+        duration = data["duration"]
         thumbnail = f"https://i.ytimg.com/vi/{data['id']}/hqdefault.jpg"
         return [songname, url, duration, thumbnail]
     except Exception as e:
