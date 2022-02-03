@@ -299,7 +299,7 @@ async def vstream(c: Client, m: Message):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton(text="• geri", callback_data="cbmenu"),
+                InlineKeyboardButton(text="• menü", callback_data="cbmenu"),
                 InlineKeyboardButton(text="• geri", callback_data="cls"),
             ]
         ]
