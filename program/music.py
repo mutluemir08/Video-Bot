@@ -60,7 +60,7 @@ async def play(c: Client, m: Message):
     except Exception as e:
         return await m.reply_text(f"error:\n\n{e}")
     a = await c.get_chat_member(chat_id, aing.id)
-    if a.status != "Administrator":
+    if a.status != "administrator":
         return await m.reply_text(
             f"💡 Beni kullanabilmeniz için yönetici olmam gerekiyor"
         )
