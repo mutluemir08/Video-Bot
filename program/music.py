@@ -78,7 +78,7 @@ async def play(c: Client, m: Message):
     try:
         ubot = (await user.get_me()).id
         b = await c.get_chat_member(chat_id, ubot)
-        if b.status == "yasaklandı":
+        if b.status == "kicked":
             await m.reply_text(
                 f"@{ASSISTANT_NAME} **Bu grupta yasaklandı ** {m.chat.title}\n\n» **botu kullanmak istiyorsanız asistan yasağını kaldırın.**"
             )
