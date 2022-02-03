@@ -28,7 +28,7 @@ ydl_opts = {
 def song(_, message):
     query = " ".join(message.command[1:])
     m = message.reply("🔎 aranıyor...")
-    ydl_ops = {"format": "eniyises[ext=m4a]"}
+    ydl_ops = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
         link = f"https://youtube.com{results[0]['url_suffix']}"
@@ -37,7 +37,7 @@ def song(_, message):
         thumb_name = f"{title}.jpg"
         thumb = requests.get(thumbnail, allow_redirects=True)
         open(thumb_name, "wb").write(thumb.content)
-        duration = results[0]["süre"]
+        duration = results[0]["duration"]
 
     except Exception as e:
         m.edit("❌ şarkı bulunamadı.\n\nlütfen geçerli bir şarkı adı verin.")
