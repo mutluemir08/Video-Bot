@@ -15,18 +15,18 @@ import wget
 import yt_dlp
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, MessageNotModified
-from pyrogram.types import Message
+from telegraph.aio import Telegraph
 from youtube_search import YoutubeSearch
 from yt_dlp import YoutubeDL
 
 from config import BOT_USERNAME as bn
-from telegraph.aio import Telegraph
+
 
 def humanbytes(size):
     """baytları Baytlara Dönüştür ki İnsan Okuyabilsin"""
     if not size:
         return ""
-    power = 2 ** 10
+    power = 2**10
     raised_to_pow = 0
     dict_power_n = {0: "", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
     while size > power:
@@ -197,7 +197,7 @@ async def download_song(url):
 
 def time_to_seconds(times):
     stringt = str(times)
-    return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
+    return sum(int(x) * 60**i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
 @Client.on_message(
@@ -249,15 +249,13 @@ async def vsong(client, message):
         print(e)
 
 
-
-
 telegraph = Telegraph()
 
 
 @Client.on_message(command(["soz", "lyric", f"lyric@{bn}"]) & ~filters.edited)
 async def lyrics(c: Client, message):
     ment = message.from_user.mention
-    chat_id = message.chat.id
+    message.chat.id
     try:
         if len(message.command) < 2:
             await message.reply_text(
@@ -308,7 +306,7 @@ async def lyrics(c: Client, message):
                     f"{ment}<i> şarkınızın sözlerini Telegraph'a yapıştırırken bir hata oluştu! Lütfen tekrar deneyin, hatanın devam etmesi durumunda sahibime ulaşın. </i>"
                 )
                 print(e)
-    except Exception as h:
+    except Exception:
         await rep.edit(
             "❌ Herhangi bir sonuç bulunamadı! Lütfen doğru kelimelerle tekrar deneyin, hatanın devam etmesi durumunda sahibime yazın."
         )
