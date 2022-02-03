@@ -8,7 +8,7 @@ from config import BOT_USERNAME
 from driver.filters import command
 
 logging.basicConfig(
-    level=logging.DEBUG, format="%(asctime)s - %(isim)s - %(syisim)s - %(message)s"
+    level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
