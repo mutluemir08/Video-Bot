@@ -47,7 +47,7 @@ async def cbstart(_, query: CallbackQuery):
     )
 
 
-@Client.on_callback_query(filters.regex("kılavuz"))
+@Client.on_callback_query(filters.regex("cbhowtouse"))
 async def cbguides(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""❓ **Başlangıç aşağıdaki adımları uygulayın:**
@@ -104,7 +104,7 @@ async def cbbasic(_, query: CallbackQuery):
 » /canlı canlı yayın akışını sağlar 
 ⚡️ __Powered by {BOT_NAME} AI__""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙 Go Back", callback_data="cbcmds")]]
+            [[InlineKeyboardButton("🔙 Geri Git", callback_data="cbcmds")]]
         ),
     )
 
