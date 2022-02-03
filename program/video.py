@@ -23,7 +23,7 @@ from driver.queues import QUEUE, add_to_queue
 def ytsearch(query: str):
     try:
         search = VideosSearch(query, limit=1).result()
-        data = search["sonuç"][0]
+        data = search["result"][0]
         songname = data["title"]
         url = data["link"]
         duration = data["duration"]
@@ -73,7 +73,7 @@ async def vplay(c: Client, m: Message):
     except Exception as e:
         return await m.reply_text(f"error:\n\n{e}")
     a = await c.get_chat_member(chat_id, aing.id)
-    if a.status != "yönetici":
+    if a.status != "administrator":
         await m.reply_text(
             f"💡 Beni kullanabilmek için istenilen izinlere sahip olmam lazım**"
         )
@@ -92,7 +92,7 @@ async def vplay(c: Client, m: Message):
     try:
         ubot = (await user.get_me()).id
         b = await c.get_chat_member(chat_id, ubot)
-        if b.status == "yasaklı":
+        if b.status == "kicked":
             await m.reply_text(
                 f"@{ASSISTANT_NAME} **asistan yasaklanmış** {m.chat.title}\n\n» **botu kullanmak istiyorsanız asistanın yasağını kaldırın.**"
             )
@@ -313,7 +313,7 @@ async def vstream(c: Client, m: Message):
     except Exception as e:
         return await m.reply_text(f"error:\n\n{e}")
     a = await c.get_chat_member(chat_id, aing.id)
-    if a.status != "yönetici":
+    if a.status != "administrator":
         await m.reply_text(
             f"💡 Beni kullanabilmeniz için istenilen izinlere sahip olmam gerekiyor**"
         )
@@ -332,7 +332,7 @@ async def vstream(c: Client, m: Message):
     try:
         ubot = (await user.get_me()).id
         b = await c.get_chat_member(chat_id, ubot)
-        if b.status == "yasaklı":
+        if b.status == "kicked":
             await m.reply_text(
                 f"@{ASSISTANT_NAME} **grupta yasaklanmış** {m.chat.title}\n\n» **botu kullanmak istiyorsanız asistan yasağını kaldırın.**"
             )
@@ -381,7 +381,7 @@ async def vstream(c: Client, m: Message):
                 )
             loser = await c.send_message(chat_id, "🔄 **akış...**")
         else:
-            await m.reply("**/canlı {link} {720/480/360}**")
+            await m.reply("**/live {link} {720/480/360}**")
 
         regex = r"^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+"
         match = re.match(regex, link)
@@ -395,7 +395,7 @@ async def vstream(c: Client, m: Message):
             await loser.edit(f"❌ yt-dl sorun algılandı\n\n» `{livelink}`")
         else:
             if chat_id in QUEUE:
-                pos = add_to_queue(chat_id, "canlı yayın", livelink, link, "Video", Q)
+                pos = add_to_queue(chat_id, "Live Stream", livelink, link, "Video", Q)
                 await loser.delete()
                 requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
                 await m.reply_photo(
@@ -421,14 +421,14 @@ async def vstream(c: Client, m: Message):
                         ),
                         stream_type=StreamType().live_stream,
                     )
-                    add_to_queue(chat_id, "canlı yayın", livelink, link, "Video", Q)
+                    add_to_queue(chat_id, "Live Stream", livelink, link, "Video", Q)
                     await loser.delete()
                     requester = (
                         f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
                     )
                     await m.reply_photo(
                         photo=f"{IMG_2}",
-                        caption=f"💡 **[canlı video]({link}) akış başladı.**\n\n💭 **Chat:** `{chat_id}`\n💡 **isteyen:** `oynatılıyor`\n🎧 **isteyen:** {requester}",
+                        caption=f"💡 **[video live]({link}) akış başladı.**\n\n💭 **Chat:** `{chat_id}`\n💡 **isteyen:** `oynatılıyor`\n🎧 **isteyen:** {requester}",
                         reply_markup=keyboard,
                     )
                 except Exception as ep:
