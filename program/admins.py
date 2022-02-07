@@ -6,7 +6,7 @@ from pyrogram.types import (
     Message,
 )
 
-from config import BOT_USERNAME, IMG_3, admins
+from config import BOT_USERNAME, IMG_3
 from driver.decorators import authorized_users_only
 from driver.filters import command, other_filters
 from driver.jennie import call_py
