@@ -18,7 +18,7 @@ keyboard = InlineKeyboardMarkup(
     [
         [
             InlineKeyboardButton(text="• Mᴇɴᴜ", callback_data="cbmenu"),
-            InlineKeyboardButton(text="• Group", url=f"https://t.me/lisasupportchat"),
+            InlineKeyboardButton(text="• Group", url=f"https://t.me/GYCYolcu"),
         ]
     ]
 )
@@ -106,17 +106,17 @@ async def stream_end_handler(_, u: Update):
         op = await skip_current_song(chat_id)
         if op == 1:
             await bot.send_message(
-                chat_id, "✅ **userbot has disconnected from video chat.**"
+                chat_id, "✅ **Asistan sesten ayrıldı.**"
             )
         elif op == 2:
             await bot.send_message(
                 chat_id,
-                "❌ **an error occurred**\n\n» **Clearing** __Queues__ **and leaving video chat.**",
+                "❌ **Hata:**\n\n» __Sıra__ **Temizlendi** **vesesli sohbetten ayrıldı.**",
             )
         else:
             await bot.send_message(
                 chat_id,
-                f"💡 **Streaming next track**\n\n🏷 **Name:** [{op[0]}]({op[1]}) | `{op[2]}`\n💭 **Chat:** `{chat_id}`",
+                f"💡 **Sıradaki yayına atlandı**\n\n🏷 **İsim:** [{op[0]}]({op[1]}) | `{op[2]}`\n💭 **Sohbet:** `{chat_id}`",
                 disable_web_page_preview=True,
                 reply_markup=keyboard,
             )
