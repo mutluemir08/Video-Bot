@@ -56,7 +56,7 @@ async def _human_time_duration(seconds):
 async def start_(client: Client, message: Message):
     await message.reply_photo("https://telegra.ph/file/84c3fa6685479f7e1a5a6.jpg")
     await message.reply_text(
-        f"""✨ **Merhaba{message.from_user.mention()} !**\n
+        f"""✨ **Merhaba{message.from_user.mention()} !**
 💭 [{BOT_NAME}](https://t.me/{BOT_USERNAME}) **botu sesli sohbetlerde canlı yayın video ve müzik akışını sağlar !**
 
 ❂ **Detaylı bilgi ve tüm komutlar için komutlar butonuna tıklayın !**
@@ -74,15 +74,6 @@ async def start_(client: Client, message: Message):
                 [InlineKeyboardButton("❓ Basit komutlar", callback_data="cbhowtouse")],
                 [
                     InlineKeyboardButton("📚 komutlar", callback_data="cbcmds"),
-                    InlineKeyboardButton("Sahip", url=f"https://t.me/{OWNER_NAME}"),
-                ],
-                [
-                    InlineKeyboardButton(
-                        "[► Grup Destek ◄]", url=f"https://t.me/{GROUP_SUPPORT}"
-                    ),
-                    InlineKeyboardButton(
-                        "[► Kanal Destek ◄]", url=f"https://t.me/{UPDATES_CHANNEL}"
-                    ),
                 ],
                 [InlineKeyboardButton("🌐 Sohbet Grubu", url="https://t.me/gycyolcu")],
             ]
